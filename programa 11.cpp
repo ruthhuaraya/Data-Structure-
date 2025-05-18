@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int mane (){
+int main (){
     int var = 10;
     int* ptr = &var;
     cout << "El valor de var:"<< var << endl;
