@@ -181,7 +181,7 @@ int main() {
     cursos.push_back(practicas_profesionales);
 
     // Establecer relaciones de dependencias
-    matematica_basica->siguientes.push_back(calculo_integral);
+    matematica_basica->siguientes.push_back(calculo_diferencial);
     estadistica_basica->siguientes.push_back(calculo_probabilidades);
     calculo_diferencial->siguientes.push_back(calculo_integral);
     analisis_algoritmos->siguientes.push_back(estructuras_datos);
