@@ -254,7 +254,6 @@ int main() {
         cout << "Curso no encontrado. Verifique el nombre ingresado.\n";
     }
 
-    // Liberar memoria
     for (auto c : cursos) delete c;
 
     return 0;
