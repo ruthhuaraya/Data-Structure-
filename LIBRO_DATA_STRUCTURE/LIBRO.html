@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LIBRO.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="universidad-nacional-del-altiplano-de-puno">UNIVERSIDAD NACIONAL DEL ALTIPLANO DE PUNO</h1>
+<h2 id="escuela-profesional-de-ingenier%C3%ADa-estad%C3%ADstica-e-inform%C3%A1tica">Escuela Profesional de Ingeniería Estadística e Informática</h2>
+<h2 id="iei"><img src="IEI.png" alt="IEI"></h2>
+<h1 id="estructura-de-datos">ESTRUCTURA DE DATOS</h1>
+<h3 id="libro-acad%C3%A9mico">Libro académico</h3>
+<p><strong>Autora:</strong> Ruth Jhakelin Huaraya Chambi<br>
+<strong>Estudiante de Ingeniería Estadística e Informática</strong></p>
+<p><strong>Asesor:</strong> Fredd Torres Cruz
+Curso: Estructura de Datos</p>
+<h2 id="puno-per%C3%BA2025"><strong>Puno, Perú</strong><br>
+2025</h2>
+<h1 id="prop%C3%B3sito-del-libro">Propósito del Libro</h1>
+<p>El propósito de este libro es proporcionar una guía práctica y teórica sobre estructuras de datos en C++, orientado a estudiantes que buscan fortalecer sus fundamentos de programación. A lo largo del libro se presentarán explicaciones claras, ejemplos aplicados, códigos comentados y ejercicios que permiten aplicar el conocimiento de forma efectiva.</p>
+<hr>
+<h1 id="c%C3%B3mo-usar-el-libro">Cómo Usar el Libro</h1>
+<p>Cada capítulo está diseñado con teoría breve pero esencial, ejemplos de aplicación en C++, diagramas ilustrativos, sugerencias prácticas, notas destacadas, y al final, una sección de ejercicios propuestos. Se recomienda seguir el orden secuencial, ya que los conceptos se construyen progresivamente.</p>
+<hr>
+<h1 id="%C3%ADndice">Índice</h1>
+<ul>
+<li>
+<p><a href="#cap%C3%ADtulo-1-datos">Datos</a></p>
+<ul>
+<li><a href="#11-clasificaci%C3%B3n-de-los-datos-en-c">Clasificación de los datos en C++</a>
+<ul>
+<li><a href="#datos-primitivos">Datos primitivos</a></li>
+<li><a href="#datos-derivados">Datos derivados</a></li>
+<li><a href="#datos-definidos-por-el-usuario">Datos definidos por el usuario</a></li>
+</ul>
+</li>
+<li><a href="#12-declaraci%C3%B3n-y-asignaci%C3%B3n-de-variables">Declaración y asignación de variables</a>
+<ul>
+<li><a href="#declaracion-sin-asignaci%C3%B3n">Declaración sin asignación</a></li>
+<li><a href="#declaracion-m%C3%BAltiple">Declaración múltiple</a></li>
+<li><a href="#inicializaci%C3%B3n-vs-asignaci%C3%B3n">Inicialización vs asignación</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-2-entradas-y-salidas">Entradas y salidas</a></p>
+<ul>
+<li><a href="#21-librer%C3%ADas-necesarias">Librerías necesarias</a></li>
+<li><a href="#22-instrucciones-de-entrada-cin">Instrucciones de Entrada: cin</a>
+<ul>
+<li><a href="#sintaxis">Sintaxis</a></li>
+<li><a href="#ejemplo-b%C3%A1sico">Ejemplo básico</a></li>
+</ul>
+</li>
+<li><a href="#23-instrucciones-de-salida-cout">Instrucciones de Salida: cout</a>
+<ul>
+<li><a href="#sintaxis-1">Sintaxis</a></li>
+<li><a href="#ejemplo-b%C3%A1sico-1">Ejemplo básico</a></li>
+</ul>
+</li>
+<li><a href="#24-ejemplo-aplicativo">Ejemplo Aplicativo</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-3-operadores">Operadores</a></p>
+<ul>
+<li><a href="#31-tipos-de-operadores">Tipos de operadores</a></li>
+<li><a href="#32-operadores-aritm%C3%A9ticos">Operadores aritméticos</a>
+<ul>
+<li><a href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li><a href="#34-operadores-relacionales">Operadores relacionales</a>
+<ul>
+<li><a href="#ejemplo-1">Ejemplo</a></li>
+</ul>
+</li>
+<li><a href="#35-operadores-l%C3%B3gicos">Operadores lógicos</a></li>
+<li><a href="#36-operadores-de-asignaci%C3%B3n">Operadores de asignación</a></li>
+<li><a href="#37-operadores-de-incremento-y-decremento">Operadores de incremento y decremento</a></li>
+<li><a href="#39-operadores-de-bits-bitwise">Operadores de bits (bitwise)</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-4-condicionales">Condicionales</a></p>
+<ul>
+<li><a href="#41-sentencia-if">Sentencia if</a>
+<ul>
+<li><a href="#sintaxis-2">Sintaxis</a></li>
+</ul>
+</li>
+<li><a href="#42-sentencia-ifelse">Sentencia if...else</a>
+<ul>
+<li><a href="#sintaxis-3">Sintaxis</a></li>
+<li><a href="#ejemplo-2">Ejemplo</a></li>
+</ul>
+</li>
+<li><a href="#43-sentencia-ifelse-ifelse">Sentencia if...else if...else</a>
+<ul>
+<li><a href="#sintaxis-4">Sintaxis</a></li>
+<li><a href="#ejemplo-3">Ejemplo</a></li>
+</ul>
+</li>
+<li><a href="#44-sentencia-switch">Sentencia switch</a>
+<ul>
+<li><a href="#sintaxis-5">Sintaxis</a>
+<ul>
+<li><a href="#ejemplo-4">Ejemplo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-5-ciclos-o-bucles">Ciclos o bucles</a></p>
+<ul>
+<li><a href="#51-bucle-for">Bucle for</a>
+<ul>
+<li><a href="#sintaxis-6">Sintaxis</a></li>
+<li><a href="#ejemplo-contar-del-1-al-5">Ejemplo: Contar del 1 al 5</a></li>
+</ul>
+</li>
+<li><a href="#52-bucle-while">Bucle while</a>
+<ul>
+<li><a href="#sintaxis-7">Sintaxis</a></li>
+<li><a href="#ejemplo-contar-hasta-5">Ejemplo: Contar hasta 5</a></li>
+<li><a href="#ejemplo-aplicativo-men%C3%BA-hasta-salir">Ejemplo Aplicativo: Menú hasta salir</a></li>
+</ul>
+</li>
+<li><a href="#53-bucle-dowhile">Bucle do...while</a>
+<ul>
+<li><a href="#sintaxis-8">Sintaxis</a></li>
+<li><a href="#ejemplo-leer-n%C3%BAmero-positivo">Ejemplo: Leer número positivo</a></li>
+</ul>
+</li>
+<li><a href="#54-buenas-pr%C3%A1cticas">Buenas Prácticas</a></li>
+<li><a href="#55-consideraciones-avanzadas">Consideraciones Avanzadas</a>
+<ul>
+<li><a href="#ejemplo-bucle-anidado-para-una-matriz">Ejemplo: Bucle anidado para una matriz</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-6-funciones">Funciones</a></p>
+<ul>
+<li><a href="#61-ventajas-del-uso-de-funciones">Ventajas del uso de funciones</a></li>
+<li><a href="#62-estructura-de-una-funci%C3%B3n">Estructura de una función</a>
+<ul>
+<li><a href="#partes-principales">Partes principales</a></li>
+</ul>
+</li>
+<li><a href="#63-declaraci%C3%B3n-y-definici%C3%B3n">Declaración y definición</a>
+<ul>
+<li><a href="#ejemplo-b%C3%A1sico-2">Ejemplo básico</a></li>
+</ul>
+</li>
+<li><a href="#64-funciones-con-retorno-void">Funciones con retorno void</a></li>
+<li><a href="#65-par%C3%A1metros-por-valor-vs-por-referencia">Parámetros por valor vs por referencia</a>
+<ul>
+<li><a href="#por-valor">Por valor</a></li>
+<li><a href="#por-referencia">Por referencia</a></li>
+</ul>
+</li>
+<li><a href="#66-funciones-con-valores-por-defecto">Funciones con valores por defecto</a></li>
+<li><a href="#67-funciones-sobrecargadas-overloading">Funciones sobrecargadas (Overloading)</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-7-arreglos-arrays">Arreglos (Arrays)</a></p>
+<ul>
+<li><a href="#sintaxis-9">Sintaxis</a></li>
+<li><a href="#72-acceso-a-elementos">Acceso a elementos</a></li>
+<li><a href="#74-ejemplo-aplicativo-promedio-de-5-calificaciones">Ejemplo Aplicativo: Promedio de 5 calificaciones</a></li>
+<li><a href="#75-arreglos-y-constantes">Arreglos y constantes</a></li>
+<li><a href="#76-inicializaci%C3%B3n-parcial-y-por-defecto">Inicialización parcial y por defecto</a></li>
+<li><a href="#77-ejemplo-aplicativo-buscar-valor-en-arreglo">Ejemplo Aplicativo: Buscar valor en arreglo</a></li>
+<li><a href="#78-tabla-caracter%C3%ADsticas-de-los-arreglos">Tabla: Características de los Arreglos</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-8-punteros-y-direcciones-de-memoria">Punteros y Direcciones de Memoria</a></p>
+<ul>
+<li><a href="#81-direcciones-de-memoria">Direcciones de memoria</a>
+<ul>
+<li><a href="#tabla-operadores-clave">Tabla: Operadores clave</a></li>
+</ul>
+</li>
+<li><a href="#82-declaraci%C3%B3n-de-punteros">Declaración de punteros</a></li>
+<li><a href="#83-acceso-a-datos-mediante-punteros">Acceso a datos mediante punteros</a></li>
+<li><a href="#84-modificaci%C3%B3n-de-valores-usando-punteros">Modificación de valores usando punteros</a></li>
+<li><a href="#85-ejemplo-aplicativo-intercambio-de-variables">Ejemplo Aplicativo: Intercambio de variables</a></li>
+<li><a href="#87-punteros-y-arreglos">Punteros y arreglos</a></li>
+<li><a href="#88-punteros-a-funciones">Punteros a funciones</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-9-listas-enlazadas">Listas Enlazadas</a></p>
+<ul>
+<li><a href="#91-concepto-b%C3%A1sico-de-lista-enlazada">Concepto Básico de Lista Enlazada</a></li>
+<li><a href="#92-crear-e-imprimir-una-lista">Crear e Imprimir una Lista</a></li>
+<li><a href="#93-inserci%C3%B3n-de-nodos">Inserción de Nodos</a>
+<ul>
+<li><a href="#al-inicio">Al inicio</a></li>
+<li><a href="#al-final">Al final</a></li>
+</ul>
+</li>
+<li><a href="#94-eliminaci%C3%B3n-de-nodos">Eliminación de Nodos</a></li>
+<li><a href="#95-ejemplo-aplicativo-lista-de-estudiantes">Ejemplo Aplicativo: Lista de Estudiantes</a></li>
+<li><a href="#96-tipos-de-listas-enlazadas">Tipos de Listas Enlazadas</a></li>
+<li><a href="#97-visualizaci%C3%B3n-y-diagramas">Visualización y Diagramas</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-10-pilas-stacks">Pilas (Stacks)</a></p>
+<ul>
+<li><a href="#101-concepto-de-pila">Concepto de Pila</a></li>
+<li><a href="#102-implementaci%C3%B3n-de-una-pila-con-estructuras">Implementación de una pila con estructuras</a></li>
+<li><a href="#103-operaciones-b%C3%A1sicas">Operaciones básicas</a></li>
+<li><a href="#104-aplicaci%C3%B3n-verificaci%C3%B3n-de-par%C3%A9ntesis-balanceados">Aplicación: Verificación de paréntesis balanceados</a></li>
+<li><a href="#105-uso-de-la-stl-stdstack">Uso de la STL: std::stack</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-11-colas-queues-en-c">Colas (Queues)</a></p>
+<ul>
+<li><a href="#111-concepto-de-cola">Concepto de Cola</a></li>
+<li><a href="#113-operaciones-fundamentales">Operaciones fundamentales</a></li>
+<li><a href="#114-uso-de-la-stl-stdqueue">Uso de la STL: std::queue</a></li>
+<li><a href="#115-aplicaci%C3%B3n-sistema-de-atenci%C3%B3n-de-clientes">Aplicación: Sistema de atención de clientes</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#cap%C3%ADtulo-12-recursi%C3%B3n-en-c">Recursión en C++</a></p>
+<ul>
+<li><a href="#121-componentes-de-una-funci%C3%B3n-recursiva">Componentes de una función recursiva</a></li>
+<li><a href="#122-factorial-de-un-n%C3%BAmero-ejemplo-cl%C3%A1sico">Factorial de un número (ejemplo clásico)</a></li>
+<li><a href="#123-secuencia-fibonacci">Secuencia Fibonacci</a></li>
+<li><a href="#124-recursi%C3%B3n-de-cola-tail-recursion">Recursión de cola (Tail Recursion)</a>
+<ul>
+<li><a href="#125-aplicaci%C3%B3n-potenciaci%C3%B3n-recursiva">Aplicación: Potenciación recursiva</a></li>
+</ul>
+</li>
+<li><a href="#126-comparaci%C3%B3n-recursi%C3%B3n-vs-iteraci%C3%B3n">Comparación: Recursión vs. Iteración</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="capitulo-1-datos">Capitulo 1. Datos</h1>
+<p>Los datos representan valores que pueden ser procesados por un programa. Toda operación computacional se basa en la manipulación de estos datos, que pueden ser numéricos, lógicos, caracteres o estructuras más complejas.</p>
+<h2 id="11-clasificaci%C3%B3n-de-los-datos-en-c">1.1 Clasificación de los datos en C++</h2>
+<p>En C++, los datos se clasifican en tres grandes categorías:</p>
+<h3 id="datos-primitivos">Datos primitivos</h3>
+<p>Son los tipos de datos fundamentales que el lenguaje proporciona de forma nativa:</p>
+<ul>
+<li><code>int</code>: Enteros (positivos o negativos)</li>
+<li><code>float</code>, <code>double</code>: Números decimales (precisión simple y doble)</li>
+<li><code>char</code>: Caracteres individuales</li>
+<li><code>bool</code>: Booleanos (verdadero o falso)</li>
+</ul>
+<h3 id="datos-derivados">Datos derivados</h3>
+<p>Son construcciones creadas a partir de tipos primitivos:</p>
+<ul>
+<li>Arreglos</li>
+<li>Punteros</li>
+<li>Referencias</li>
+</ul>
+<h3 id="datos-definidos-por-el-usuario">Datos definidos por el usuario</h3>
+<p>Son estructuras personalizadas:</p>
+<ul>
+<li><code>struct</code>: Agrupación de múltiples datos</li>
+<li><code>union</code>: Estructuras de memoria compartida</li>
+<li><code>enum</code>: Conjuntos de constantes con nombre</li>
+</ul>
+<h2 id="12-declaraci%C3%B3n-y-asignaci%C3%B3n-de-variables">1.2 Declaración y asignación de variables</h2>
+<p>En C++, una variable es un espacio en memoria que se reserva para almacenar un valor específico de un tipo determinado. Antes de usar una variable, debe declararse. La sintaxis general es:</p>
+<pre class="hljs"><code><div>tipo nombreVariable = valor;
+</div></code></pre>
+<h3 id="ejemplo-basico">Ejemplo basico</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> edad = <span class="hljs-number">20</span>; <span class="hljs-comment">// Variable de tipo entero</span>
+<span class="hljs-keyword">float</span> estatura = <span class="hljs-number">1.75</span>; <span class="hljs-comment">// Número con decimales</span>
+<span class="hljs-keyword">char</span> inicial = <span class="hljs-string">'R'</span>; <span class="hljs-comment">// Carácter individual</span>
+<span class="hljs-keyword">bool</span> aprobado = <span class="hljs-literal">true</span>; <span class="hljs-comment">// Valor lógico </span>
+</div></code></pre>
+<h3 id="declaracion-sin-asignaci%C3%B3n">Declaracion sin asignación</h3>
+<p>También se puede declarar una variable sin asignarle un valor inmediatamente:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> nota;
+nota = <span class="hljs-number">18</span>; 
+</div></code></pre>
+<h3 id="declaracion-m%C3%BAltiple">Declaracion múltiple</h3>
+<p>Se pueden declarar varias variables del mismo tipo en una sola línea:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> a = <span class="hljs-number">5</span>, b = <span class="hljs-number">10</span>, c = <span class="hljs-number">15</span>;
+</div></code></pre>
+<h3 id="inicializaci%C3%B3n-vs-asignaci%C3%B3n">Inicialización vs asignación</h3>
+<table>
+<thead>
+<tr>
+<th>Inicialización</th>
+<th>Asignación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Se asigna un valor al momento de declarar la variable.</td>
+<td>Se declara primero la variable y luego se le asigna un valor.</td>
+</tr>
+<tr>
+<td>int edad = 20;</td>
+<td>int edad; edad = 20;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ejemplo-aplicativo">Ejemplo aplicativo</h2>
+<p>Problema: Diseña un programa que declare variables con sus respectivos valores.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> edad = <span class="hljs-number">20</span>;
+    <span class="hljs-keyword">float</span> altura = <span class="hljs-number">1.60</span>;
+    <span class="hljs-keyword">char</span> inicial = <span class="hljs-string">'R'</span>;
+    <span class="hljs-keyword">bool</span> estudiante = <span class="hljs-literal">true</span>;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Edad: "</span> &lt;&lt; edad &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Altura: "</span> &lt;&lt; altura &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Inicial: "</span> &lt;&lt; inicial &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Estudiante: "</span> &lt;&lt; estudiante &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<hr>
+<h2 id="ing"><img src="ING2.png" alt="ING"></h2>
+<h1 id="capitulo-2-entradas-y-salidas">Capitulo 2. Entradas y salidas</h1>
+<p>Las instrucciones de entrada y salida permiten la interacción del programa con el usuario. En C++, la biblioteca &quot;iostream&quot; es fundamental para estas operaciones.</p>
+<pre class="hljs"><code><div>Entrada: recepción de datos del usuario.
+Salida: presentación de resultados al usuario.
+</div></code></pre>
+<h2 id="21-librer%C3%ADas-necesarias">2.1 Librerías necesarias</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;  // Entrada/Salida estandar</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+</div></code></pre>
+<h2 id="22-instrucciones-de-entrada-cin">2.2 Instrucciones de Entrada: cin</h2>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div><span class="hljs-built_in">cin</span> &gt;&gt; variable;
+</div></code></pre>
+<h3 id="ejemplo-b%C3%A1sico">Ejemplo básico</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> edad;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Ingrese su edad: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; edad;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Tu edad es: "</span> &lt;&lt; edad &lt;&lt; <span class="hljs-string">" años."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="23-instrucciones-de-salida-cout">2.3 Instrucciones de Salida: cout</h2>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div><span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Texto a mostrar"</span> &lt;&lt; variable;
+</div></code></pre>
+<h3 id="ejemplo-b%C3%A1sico">Ejemplo básico</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">string</span> nombre;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Ingrese su nombre: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; nombre;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hola, "</span> &lt;&lt; nombre &lt;&lt; <span class="hljs-string">"!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="24-ejemplo-aplicativo">2.4 Ejemplo Aplicativo</h2>
+<p>Problema: Diseña un programa que lea el nombre, edad y promedio de un estudiante, y los muestre con formato ordenado.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">string</span> nombre;
+    <span class="hljs-keyword">int</span> edad;
+    <span class="hljs-keyword">float</span> promedio;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nombre del estudiante: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; nombre;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Edad: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; edad;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Promedio final: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; promedio;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nReporte de Estudiante\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; nombre &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; edad &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; promedio &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<hr>
+<h2 id="ing"><img src="ING1.png" alt="ING"></h2>
+<h1 id="capitulo-3-operadores">Capitulo 3. Operadores</h1>
+<p>Los operadores en C++ permiten realizar operaciones sobre variables y valores. Son fundamentales en toda estructura lógica y aritmética de un programa.</p>
+<h2 id="31-tipos-de-operadores">3.1 Tipos de operadores</h2>
+<p>En C++ existen varios tipos de operadores, clasificados según su funcionalidad:</p>
+<ul>
+<li>Aritméticos</li>
+<li>Relacionales o de comparación</li>
+<li>Lógicos</li>
+<li>De asignación</li>
+<li>Incremento y decremento</li>
+<li>Ternario o condicional</li>
+<li>De bits (bitwise)</li>
+<li>Otros operadores especiales</li>
+</ul>
+<h2 id="32-operadores-aritm%C3%A9ticos">3.2 Operadores aritméticos</h2>
+<p>Permiten realizar operaciones matemáticas básicas.</p>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+</td>
+<td>Suma</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Resta</td>
+</tr>
+<tr>
+<td>*</td>
+<td>Multiplicación</td>
+</tr>
+<tr>
+<td>/</td>
+<td>División</td>
+</tr>
+<tr>
+<td>%</td>
+<td>Módulo (resto de la división)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo">Ejemplo</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>, b = <span class="hljs-number">3</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Suma: "</span> &lt;&lt; (a + b) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Resta: "</span> &lt;&lt; (a - b) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Multiplicación: "</span> &lt;&lt; (a * b) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"División: "</span> &lt;&lt; (a / b) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Módulo: "</span> &lt;&lt; (a % b) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="34-operadores-relacionales">3.4 Operadores relacionales</h2>
+<p>Compara valores y devuelve un valor booleano.</p>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>Igual a</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>Diferente de</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>Mayor que</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>Menor que</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>Mayor o igual que</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>Menor o igual que</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejemplo">Ejemplo</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> x = <span class="hljs-number">5</span>, y = <span class="hljs-number">8</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; (x == y) &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// false (0)</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; (x &lt; y) &lt;&lt; <span class="hljs-built_in">endl</span>;  <span class="hljs-comment">// true (1)</span>
+</div></code></pre>
+<h2 id="35-operadores-l%C3%B3gicos">3.5 Operadores lógicos</h2>
+<p>Se usan para construir expresiones lógicas complejas.</p>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;&amp;</td>
+<td>AND lógico</td>
+</tr>
+<tr>
+<td>||</td>
+<td>OR lógico</td>
+</tr>
+<tr>
+<td>!</td>
+<td>NOT lógico</td>
+</tr>
+</tbody>
+</table>
+<h2 id="36-operadores-de-asignaci%C3%B3n">3.6 Operadores de asignación</h2>
+<p>Asignan valores a las variables.</p>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>Asignación</td>
+</tr>
+<tr>
+<td>+=</td>
+<td>Suma y asignación</td>
+</tr>
+<tr>
+<td>-=</td>
+<td>Resta y asignación</td>
+</tr>
+<tr>
+<td>*=</td>
+<td>Multiplicación y asignación</td>
+</tr>
+<tr>
+<td>/=</td>
+<td>División y asignación</td>
+</tr>
+<tr>
+<td>%=</td>
+<td>Módulo y asignación</td>
+</tr>
+</tbody>
+</table>
+<h2 id="37-operadores-de-incremento-y-decremento">3.7 Operadores de incremento y decremento</h2>
+<p>Aumentan o disminuyen el valor de una variable en uno.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> n = <span class="hljs-number">5</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; n++ &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// Imprime 5, luego n = 6</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; ++n &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// n = 7, luego imprime 7</span>
+</div></code></pre>
+<h2 id="38-operador-ternario">3.8 Operador ternario</h2>
+<p>Forma compacta de una estructura \texttt{if-else}.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> edad = <span class="hljs-number">20</span>;
+<span class="hljs-built_in">string</span> resultado = (edad &gt;= <span class="hljs-number">18</span>) ? <span class="hljs-string">"Mayor de edad"</span> : <span class="hljs-string">"Menor de edad"</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; resultado &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<h2 id="39-operadores-de-bits-bitwise">3.9 Operadores de bits (bitwise)</h2>
+<p>Manipulan directamente bits. Se usan en programación de bajo nivel.</p>
+<table>
+<thead>
+<tr>
+<th>Operador</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&amp;</td>
+<td>AND bit a bit</td>
+</tr>
+<tr>
+<td>|</td>
+<td>OR bit a bit</td>
+</tr>
+<tr>
+<td>^</td>
+<td>XOR</td>
+</tr>
+<tr>
+<td>~</td>
+<td>NOT bit a bit</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>Desplazamiento a la izquierda</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>Desplazamiento a la derecha</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="ing"><img src="ING3.png" alt="ING"></h2>
+<h1 id="capitulo-4-condicionales">Capitulo 4. Condicionales</h1>
+<p>En programación, una <strong>estructura condicional</strong> permite que un programa tome decisiones y ejecute diferentes bloques de código en función del cumplimiento de una o varias condiciones. En C++, las instrucciones condicionales más comunes son:</p>
+<ul>
+<li><code>if</code></li>
+<li><code>if...else</code></li>
+<li><code>if...else if...else</code></li>
+<li><code>switch</code></li>
+</ul>
+<p>Estas estructuras nos permiten controlar el flujo de ejecución, haciendo nuestros programas más dinámicos e inteligentes.</p>
+<h2 id="41-sentencia-if">4.1 Sentencia <code>if</code></h2>
+<p>La sentencia <code>if</code> evalúa una condición booleana. Si es verdadera, se ejecuta el bloque de instrucciones asociado.</p>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (condición) {
+    <span class="hljs-comment">// Instrucciones si la condición es verdadera</span>
+}
+</div></code></pre>
+<h3 id="ejemplo">Ejemplo</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> edad = <span class="hljs-number">20</span>;
+
+    <span class="hljs-keyword">if</span> (edad &gt;= <span class="hljs-number">18</span>) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Eres mayor de edad."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="42-sentencia-ifelse">4.2 Sentencia <code>if...else</code></h2>
+<p>Se utiliza cuando se requiere ejecutar un bloque de código si la condición se cumple y otro diferente si no se cumple.</p>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (condición) {
+    <span class="hljs-comment">// Código si condición es verdadera</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Código si condición es falsa</span>
+}
+</div></code></pre>
+<h3 id="ejemplo">Ejemplo</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> numero;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Ingrese un número: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; numero;
+
+    <span class="hljs-keyword">if</span> (numero % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"El número es par."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"El número es impar."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="43-sentencia-ifelse-ifelse">4.3 Sentencia <code>if...else if...else</code></h2>
+<p>Permite evaluar múltiples condiciones secuencialmente.</p>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (condición1) {
+    <span class="hljs-comment">// Código si condición1 es verdadera</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (condición2) {
+    <span class="hljs-comment">// Código si condición2 es verdadera</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Código si ninguna condición es verdadera</span>
+}
+</div></code></pre>
+<h3 id="ejemplo">Ejemplo</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> nota;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Ingrese su calificación: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; nota;
+
+    <span class="hljs-keyword">if</span> (nota &gt;= <span class="hljs-number">90</span>) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Excelente"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nota &gt;= <span class="hljs-number">70</span>) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Aprobado"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Reprobado"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="44-sentencia-switch">4.4 Sentencia <code>switch</code></h2>
+<p>La sentencia <code>switch</code> permite comparar el valor de una variable con una serie de constantes, de forma más ordenada que múltiples <code>if</code>.</p>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">switch</span> (expresión) {
+    <span class="hljs-keyword">case</span> valor1:
+        <span class="hljs-comment">// Código si expresión == valor1</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> valor2:
+        <span class="hljs-comment">// Código si expresión == valor2</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        <span class="hljs-comment">// Código si no coincide ningún caso</span>
+}
+</div></code></pre>
+<blockquote>
+<p><strong>Nota:</strong> La expresión debe ser de tipo entero o enumerado.</p>
+</blockquote>
+<h4 id="ejemplo">Ejemplo</h4>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> opcion;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Menú:\n1. Nuevo\n2. Abrir\n3. Salir\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Seleccione una opción: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; opcion;
+
+    <span class="hljs-keyword">switch</span> (opcion) {
+        <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Seleccionaste Nuevo"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Seleccionaste Abrir"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Saliendo del programa..."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Opción no válida"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<hr>
+<h2 id="ing"><img src="ING4.png" alt="ING"></h2>
+<h1 id="capitulo-5-ciclos-o-bucles">Capitulo 5. Ciclos o bucles</h1>
+<p>Los <strong>bucles</strong> son estructuras fundamentales en programación que permiten repetir una secuencia de instrucciones un número determinado de veces o mientras se cumpla una condición. En C++, los tipos de bucles más comunes son:</p>
+<ul>
+<li><code>for</code></li>
+<li><code>while</code></li>
+<li><code>do...while</code></li>
+</ul>
+<p>Estos nos permiten automatizar tareas repetitivas, ahorrar código y mejorar la eficiencia del programa.</p>
+<h2 id="51-bucle-for">5.1 Bucle <code>for</code></h2>
+<p>El bucle <code>for</code> se utiliza cuando conocemos de antemano cuántas veces queremos repetir una instrucción o conjunto de instrucciones.</p>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (inicialización; condición; actualización) {
+    <span class="hljs-comment">// Instrucciones que se repiten</span>
+}
+</div></code></pre>
+<h3 id="ejemplo-contar-del-1-al-5">Ejemplo: Contar del 1 al 5</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" "</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="ejemplo-aplicativo-tabla-de-multiplicar">Ejemplo Aplicativo: Tabla de multiplicar</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> numero;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Ingrese un número para ver su tabla de multiplicar: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; numero;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; numero &lt;&lt; <span class="hljs-string">" x "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" = "</span> &lt;&lt; numero * i &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="52-bucle-while">5.2 Bucle <code>while</code></h2>
+<p>El bucle <code>while</code> ejecuta un bloque de instrucciones mientras se cumpla una condición booleana. Es ideal cuando no sabemos cuántas veces se debe repetir el proceso.</p>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> (condición) {
+    <span class="hljs-comment">// Instrucciones que se repiten</span>
+}
+</div></code></pre>
+<h3 id="ejemplo-contar-hasta-5">Ejemplo: Contar hasta 5</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">while</span> (i &lt;= <span class="hljs-number">5</span>) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" "</span>;
+        i++;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="ejemplo-aplicativo-men%C3%BA-hasta-salir">Ejemplo Aplicativo: Menú hasta salir</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> opcion = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">while</span> (opcion != <span class="hljs-number">3</span>) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nMenú:\n1. Saludar\n2. Calcular\n3. Salir\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Seleccione una opción: "</span>;
+        <span class="hljs-built_in">cin</span> &gt;&gt; opcion;
+
+        <span class="hljs-keyword">if</span> (opcion == <span class="hljs-number">1</span>)
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hola!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (opcion == <span class="hljs-number">2</span>)
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Vamos a calcular algo..."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (opcion != <span class="hljs-number">3</span>)
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Opción inválida."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="53-bucle-dowhile">5.3 Bucle <code>do...while</code></h2>
+<p>Este bucle garantiza al menos una ejecución del bloque de instrucciones, ya que la condición se evalúa al final.</p>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">do</span> {
+    <span class="hljs-comment">// Instrucciones que se repiten</span>
+} <span class="hljs-keyword">while</span> (condición);
+</div></code></pre>
+<h3 id="ejemplo-leer-n%C3%BAmero-positivo">Ejemplo: Leer número positivo</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> numero;
+
+    <span class="hljs-keyword">do</span> {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Ingrese un número positivo: "</span>;
+        <span class="hljs-built_in">cin</span> &gt;&gt; numero;
+    } <span class="hljs-keyword">while</span> (numero &lt;= <span class="hljs-number">0</span>);
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Correcto: "</span> &lt;&lt; numero &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="54-buenas-pr%C3%A1cticas">5.4 Buenas Prácticas</h2>
+<ul>
+<li>Utiliza <code>for</code> cuando el número de repeticiones es conocido.</li>
+<li>Usa <code>while</code> para condiciones abiertas o lectura de datos hasta un estado.</li>
+<li><code>do...while</code> es ideal para validaciones de entrada que requieren al menos una ejecución.</li>
+<li>Evita bucles infinitos: asegúrate de modificar la condición en cada iteración.</li>
+<li>Comenta los bucles complejos para facilitar la lectura y mantenimiento.</li>
+</ul>
+<h2 id="55-consideraciones-avanzadas">5.5  Consideraciones Avanzadas</h2>
+<ul>
+<li>Puedes usar la sentencia <code>break</code> para salir de un bucle anticipadamente.</li>
+<li>La sentencia <code>continue</code> permite omitir el resto del ciclo y pasar a la siguiente iteración.</li>
+<li>Es posible anidar bucles (bucles dentro de otros bucles) para recorrer matrices, por ejemplo.</li>
+</ul>
+<h3 id="ejemplo-bucle-anidado-para-una-matriz">Ejemplo: Bucle anidado para una matriz</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> fila = <span class="hljs-number">1</span>; fila &lt;= <span class="hljs-number">3</span>; fila++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> col = <span class="hljs-number">1</span>; col &lt;= <span class="hljs-number">3</span>; col++) {
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"("</span> &lt;&lt; fila &lt;&lt; <span class="hljs-string">","</span> &lt;&lt; col &lt;&lt; <span class="hljs-string">") "</span>;
+        }
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<hr>
+<h2 id="ing"><img src="ING5.png" alt="ING"></h2>
+<h1 id="cap%C3%ADtulo-6-funciones">Capítulo 6: Funciones</h1>
+<p>Una <strong>función</strong> es un bloque de código que realiza una tarea específica y puede ser reutilizado desde diferentes partes del programa. Las funciones mejoran la organización, modularidad, mantenimiento y reutilización del código.</p>
+<p>En C++, existen dos tipos principales de funciones:</p>
+<ul>
+<li><strong>Funciones definidas por el usuario</strong></li>
+<li><strong>Funciones predefinidas (de bibliotecas)</strong></li>
+</ul>
+<h2 id="61-ventajas-del-uso-de-funciones">6.1 Ventajas del uso de funciones</h2>
+<ul>
+<li>Dividir programas complejos en módulos más manejables</li>
+<li>Reutilizar código sin duplicarlo</li>
+<li>Mejorar legibilidad y depuración</li>
+<li>Facilitar pruebas y mantenimiento</li>
+</ul>
+<h2 id="62-estructura-de-una-funci%C3%B3n">6.2 Estructura de una función</h2>
+<pre class="hljs"><code><div>&lt;tipo_de_retorno&gt; &lt;nombre_funcion&gt;(&lt;parámetros&gt;) {
+    <span class="hljs-comment">// Cuerpo de la función</span>
+    <span class="hljs-keyword">return</span> valor;
+}
+</div></code></pre>
+<h3 id="partes-principales">Partes principales:</h3>
+<table>
+<thead>
+<tr>
+<th>Parte</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tipo de retorno</td>
+<td>El tipo de dato que devuelve la función (o <code>void</code>)</td>
+</tr>
+<tr>
+<td>Nombre</td>
+<td>Identificador de la función</td>
+</tr>
+<tr>
+<td>Parámetros</td>
+<td>Variables de entrada entre paréntesis</td>
+</tr>
+<tr>
+<td>Cuerpo</td>
+<td>Instrucciones que ejecuta la función</td>
+</tr>
+</tbody>
+</table>
+<h2 id="63-declaraci%C3%B3n-y-definici%C3%B3n">6.3 Declaración y definición</h2>
+<p>En C++ se puede declarar la función antes de <code>main()</code> y definirla después, o definirla antes directamente.</p>
+<h3 id="ejemplo-b%C3%A1sico">Ejemplo básico</h3>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-comment">// Declaración</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sumar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> resultado = sumar(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>);
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"La suma es: "</span> &lt;&lt; resultado &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// Definición</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sumar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span> </span>{
+    <span class="hljs-keyword">return</span> a + b;
+}
+</div></code></pre>
+<h2 id="64-funciones-con-retorno-void">6.4 Funciones con retorno <code>void</code></h2>
+<p>Las funciones que no devuelven un valor se declaran con el tipo <code>void</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">saludar</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hola desde una función!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    saludar();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="65-par%C3%A1metros-por-valor-vs-por-referencia">6.5 Parámetros por valor vs por referencia</h2>
+<h3 id="por-valor">Por valor:</h3>
+<p>Se copia el valor del argumento. Los cambios no afectan a la variable original.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">incrementar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{
+    x++;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> a = <span class="hljs-number">5</span>;
+    incrementar(a);
+    <span class="hljs-built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// Imprime 5</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h3 id="por-referencia">Por referencia:</h3>
+<p>Se pasa la dirección de memoria. Los cambios afectan a la variable original.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">incrementar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;x)</span> </span>{
+    x++;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> a = <span class="hljs-number">5</span>;
+    incrementar(a);
+    <span class="hljs-built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// Imprime 6</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="66-funciones-con-valores-por-defecto">6.6 Funciones con valores por defecto</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">multiplicar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b = <span class="hljs-number">2</span>)</span> </span>{
+    <span class="hljs-keyword">return</span> a * b;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">cout</span> &lt;&lt; multiplicar(<span class="hljs-number">5</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;    <span class="hljs-comment">// 10</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; multiplicar(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>) &lt;&lt; <span class="hljs-built_in">endl</span>; <span class="hljs-comment">// 15</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="67-funciones-sobrecargadas-overloading">6.7 Funciones sobrecargadas (Overloading)</h2>
+<p>Permiten usar el mismo nombre de función con diferentes firmas (parámetros).</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sumar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span> </span>{
+    <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">sumar</span><span class="hljs-params">(<span class="hljs-keyword">double</span> a, <span class="hljs-keyword">double</span> b)</span> </span>{
+    <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">cout</span> &lt;&lt; sumar(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;       <span class="hljs-comment">// 5</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; sumar(<span class="hljs-number">2.5</span>, <span class="hljs-number">4.5</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;   <span class="hljs-comment">// 7.0</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<hr>
+<h2 id="ing"><img src="ING6.png" alt="ING"></h2>
+<h1 id="cap%C3%ADtulo-7-arreglos-arrays">Capítulo 7: Arreglos (Arrays)</h1>
+<p>Un <strong>arreglo</strong> (o <em>array</em>) es una estructura de datos que permite almacenar múltiples valores del mismo tipo bajo un solo nombre. Cada valor dentro del arreglo se identifica mediante un índice numérico.</p>
+<p>Los arreglos son fundamentales para el manejo eficiente de conjuntos de datos y son ampliamente utilizados en programas que requieren almacenamiento secuencial.</p>
+<h2 id="71-declaraci%C3%B3n-de-arreglos">7.1 Declaración de arreglos</h2>
+<h3 id="sintaxis">Sintaxis</h3>
+<pre class="hljs"><code><div>&lt;tipo_de_dato&gt; nombre_arreglo[tamano];
+</div></code></pre>
+<h3 id="ejemplo">Ejemplo</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> numeros[<span class="hljs-number">5</span>]; <span class="hljs-comment">// Arreglo de 5 enteros</span>
+</div></code></pre>
+<p>Se puede inicializar en el momento de la declaración:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> numeros[<span class="hljs-number">5</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>, <span class="hljs-number">50</span>};
+</div></code></pre>
+<h2 id="72-acceso-a-elementos">7.2 Acceso a elementos</h2>
+<p>Los índices comienzan en <strong>0</strong>.</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cout</span> &lt;&lt; numeros[<span class="hljs-number">0</span>]; <span class="hljs-comment">// Accede al primer elemento</span>
+numeros[<span class="hljs-number">1</span>] = <span class="hljs-number">25</span>;     <span class="hljs-comment">// Modifica el segundo elemento</span>
+</div></code></pre>
+<h2 id="73-recorrido-de-arreglos">7.3 Recorrido de arreglos</h2>
+<h3 id="usando-bucle-for">Usando bucle <code>for</code></h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+    <span class="hljs-built_in">cout</span> &lt;&lt; numeros[i] &lt;&lt; <span class="hljs-string">" "</span>;
+}
+</div></code></pre>
+<h2 id="74-ejemplo-aplicativo-promedio-de-5-calificaciones">7.4 Ejemplo Aplicativo: Promedio de 5 calificaciones</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">float</span> notas[<span class="hljs-number">5</span>];
+    <span class="hljs-keyword">float</span> suma = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Ingrese nota "</span> &lt;&lt; i + <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-string">": "</span>;
+        <span class="hljs-built_in">cin</span> &gt;&gt; notas[i];
+        suma += notas[i];
+    }
+
+    <span class="hljs-keyword">float</span> promedio = suma / <span class="hljs-number">5</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Promedio: "</span> &lt;&lt; promedio &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="75-arreglos-y-constantes">7.5 Arreglos y constantes</h2>
+<p>Se puede usar una constante para definir el tamaño:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> TAM = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> datos[TAM];
+</div></code></pre>
+<p>Esto mejora la flexibilidad del código.</p>
+<h2 id="76-inicializaci%C3%B3n-parcial-y-por-defecto">7.6 Inicialización parcial y por defecto</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> a[<span class="hljs-number">5</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>};
+<span class="hljs-comment">// El resto se inicializa a cero: {1, 2, 0, 0, 0}</span>
+</div></code></pre>
+<h2 id="77-ejemplo-aplicativo-buscar-valor-en-arreglo">7.7 Ejemplo Aplicativo: Buscar valor en arreglo</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> valores[<span class="hljs-number">6</span>] = {<span class="hljs-number">3</span>, <span class="hljs-number">7</span>, <span class="hljs-number">2</span>, <span class="hljs-number">9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>};
+    <span class="hljs-keyword">int</span> buscado;
+    <span class="hljs-keyword">bool</span> encontrado = <span class="hljs-literal">false</span>;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Ingrese valor a buscar: "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; buscado;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">6</span>; i++) {
+        <span class="hljs-keyword">if</span> (valores[i] == buscado) {
+            encontrado = <span class="hljs-literal">true</span>;
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Encontrado en la posición "</span> &lt;&lt; i &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-keyword">break</span>;
+        }
+    }
+
+    <span class="hljs-keyword">if</span> (!encontrado)
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"No se encontró el valor."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="78-tabla-caracter%C3%ADsticas-de-los-arreglos">7.8 Tabla: Características de los Arreglos</h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tamaño fijo</td>
+<td>Definido al momento de la declaración</td>
+</tr>
+<tr>
+<td>Mismo tipo de dato</td>
+<td>Todos los elementos deben ser del mismo tipo</td>
+</tr>
+<tr>
+<td>Acceso por índice</td>
+<td>Se accede mediante índices comenzando desde 0</td>
+</tr>
+<tr>
+<td>Memoria contigua</td>
+<td>Los elementos se almacenan de forma secuencial</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="ing"><img src="ING7.png" alt="ING"></h2>
+<h1 id="cap%C3%ADtulo-8-punteros-y-direcciones-de-memoria">Capítulo 8: Punteros y Direcciones de Memoria</h1>
+<p>Los <strong>punteros</strong> son variables especiales que almacenan direcciones de memoria. Permiten una manipulación más directa de los datos y son fundamentales en programación de bajo nivel, estructuras dinámicas, y optimización de recursos.</p>
+<p>Dominar los punteros es esencial para comprender cómo funciona la memoria y mejorar el rendimiento y control de los programas en C++.</p>
+<h2 id="81-direcciones-de-memoria">8.1 Direcciones de memoria</h2>
+<p>Toda variable ocupa una posición específica en la memoria RAM.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; &amp;a; <span class="hljs-comment">// Imprime la dirección de memoria de 'a'</span>
+</div></code></pre>
+<h3 id="tabla-operadores-clave">Tabla: Operadores clave</h3>
+<table>
+<thead>
+<tr>
+<th>Símbolo</th>
+<th>Nombre</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;</code></td>
+<td>Operador de dirección</td>
+<td>Devuelve la dirección de memoria de una variable</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>Operador de desreferencia</td>
+<td>Accede al valor almacenado en una dirección</td>
+</tr>
+</tbody>
+</table>
+<h2 id="82-declaraci%C3%B3n-de-punteros">8.2 Declaración de punteros</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>* ptr;
+</div></code></pre>
+<p>Significa que <code>ptr</code> es un puntero a una variable de tipo <code>int</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> a = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span>* ptr = &amp;a; <span class="hljs-comment">// 'ptr' apunta a la dirección de 'a'</span>
+</div></code></pre>
+<h2 id="83-acceso-a-datos-mediante-punteros">8.3 Acceso a datos mediante punteros</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> a = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span>* p = &amp;a;
+
+<span class="hljs-built_in">cout</span> &lt;&lt; *p; <span class="hljs-comment">// Imprime 5 (contenido de la dirección apuntada)</span>
+</div></code></pre>
+<h2 id="84-modificaci%C3%B3n-de-valores-usando-punteros">8.4 Modificación de valores usando punteros</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span>* p = &amp;a;
+*p = <span class="hljs-number">20</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; a; <span class="hljs-comment">// Imprime 20</span>
+</div></code></pre>
+<h2 id="85-ejemplo-aplicativo-intercambio-de-variables">8.5 Ejemplo Aplicativo: Intercambio de variables</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">intercambiar</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* x, <span class="hljs-keyword">int</span>* y)</span> </span>{
+    <span class="hljs-keyword">int</span> temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> a = <span class="hljs-number">5</span>, b = <span class="hljs-number">10</span>;
+    intercambiar(&amp;a, &amp;b);
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"a = "</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">", b = "</span> &lt;&lt; b &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="86-punteros-nulos">8.6 Punteros nulos</h2>
+<p>Un puntero puede no apuntar a ningún valor válido:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>* p = <span class="hljs-literal">nullptr</span>;
+</div></code></pre>
+<p>Esto evita errores al acceder memoria no inicializada.</p>
+<h2 id="87-punteros-y-arreglos">8.7 Punteros y arreglos</h2>
+<p>Un puntero puede recorrer un arreglo:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> arr[<span class="hljs-number">3</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
+<span class="hljs-keyword">int</span>* p = arr; <span class="hljs-comment">// Equivale a &amp;arr[0]</span>
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+    <span class="hljs-built_in">cout</span> &lt;&lt; *(p + i) &lt;&lt; <span class="hljs-string">" "</span>;
+}
+</div></code></pre>
+<h2 id="88-punteros-a-funciones">8.8 Punteros a funciones</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">saludar</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hola desde una función!"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">void</span> (*ptrFunc)() = saludar;
+    ptrFunc();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<hr>
+<h2 id="ing"><img src="ING8.png" alt="ING"></h2>
+<h1 id="cap%C3%ADtulo-9-listas-enlazadas">Capítulo 9: Listas Enlazadas</h1>
+<p>Las <strong>listas enlazadas</strong> son estructuras de datos dinámicas que permiten almacenar colecciones de elementos conectados mediante punteros. A diferencia de los arreglos, las listas enlazadas pueden crecer o reducirse durante la ejecución del programa, sin necesidad de redimensionar la memoria.</p>
+<p>Se usan ampliamente para optimizar inserciones y eliminaciones frecuentes de datos.</p>
+<h2 id="91-concepto-b%C3%A1sico-de-lista-enlazada">9.1 Concepto Básico de Lista Enlazada</h2>
+<p>Una lista enlazada está compuesta por nodos. Cada <strong>nodo</strong> contiene:</p>
+<ul>
+<li>Un <strong>dato</strong>.</li>
+<li>Un <strong>puntero</strong> al siguiente nodo.</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Nodo</span> {</span>
+    <span class="hljs-keyword">int</span> dato;
+    Nodo* siguiente;
+};
+</div></code></pre>
+<p><img src="lista-enlazada-simple.png" alt="Ilustración: lista enlazada simple"></p>
+<h2 id="92-crear-e-imprimir-una-lista">9.2 Crear e Imprimir una Lista</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Nodo</span> {</span>
+    <span class="hljs-keyword">int</span> dato;
+    Nodo* siguiente;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">imprimir</span><span class="hljs-params">(Nodo* cabeza)</span> </span>{
+    Nodo* actual = cabeza;
+    <span class="hljs-keyword">while</span> (actual != <span class="hljs-literal">nullptr</span>) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; actual-&gt;dato &lt;&lt; <span class="hljs-string">" -&gt; "</span>;
+        actual = actual-&gt;siguiente;
+    }
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"NULL"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    Nodo* n1 = <span class="hljs-keyword">new</span> Nodo{<span class="hljs-number">1</span>, <span class="hljs-literal">nullptr</span>};
+    Nodo* n2 = <span class="hljs-keyword">new</span> Nodo{<span class="hljs-number">2</span>, <span class="hljs-literal">nullptr</span>};
+    Nodo* n3 = <span class="hljs-keyword">new</span> Nodo{<span class="hljs-number">3</span>, <span class="hljs-literal">nullptr</span>};
+
+    n1-&gt;siguiente = n2;
+    n2-&gt;siguiente = n3;
+
+    imprimir(n1);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="93-inserci%C3%B3n-de-nodos">9.3 Inserción de Nodos</h2>
+<h3 id="al-inicio">Al inicio:</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insertarInicio</span><span class="hljs-params">(Nodo*&amp; cabeza, <span class="hljs-keyword">int</span> valor)</span> </span>{
+    Nodo* nuevo = <span class="hljs-keyword">new</span> Nodo{valor, cabeza};
+    cabeza = nuevo;
+}
+</div></code></pre>
+<h3 id="al-final">Al final:</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insertarFinal</span><span class="hljs-params">(Nodo*&amp; cabeza, <span class="hljs-keyword">int</span> valor)</span> </span>{
+    Nodo* nuevo = <span class="hljs-keyword">new</span> Nodo{valor, <span class="hljs-literal">nullptr</span>};
+    <span class="hljs-keyword">if</span> (cabeza == <span class="hljs-literal">nullptr</span>) {
+        cabeza = nuevo;
+    } <span class="hljs-keyword">else</span> {
+        Nodo* actual = cabeza;
+        <span class="hljs-keyword">while</span> (actual-&gt;siguiente != <span class="hljs-literal">nullptr</span>) {
+            actual = actual-&gt;siguiente;
+        }
+        actual-&gt;siguiente = nuevo;
+    }
+}
+</div></code></pre>
+<h2 id="94-eliminaci%C3%B3n-de-nodos">9.4 Eliminación de Nodos</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">eliminar</span><span class="hljs-params">(Nodo*&amp; cabeza, <span class="hljs-keyword">int</span> valor)</span> </span>{
+    Nodo* actual = cabeza;
+    Nodo* anterior = <span class="hljs-literal">nullptr</span>;
+
+    <span class="hljs-keyword">while</span> (actual != <span class="hljs-literal">nullptr</span> &amp;&amp; actual-&gt;dato != valor) {
+        anterior = actual;
+        actual = actual-&gt;siguiente;
+    }
+
+    <span class="hljs-keyword">if</span> (actual == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span>; <span class="hljs-comment">// Valor no encontrado</span>
+
+    <span class="hljs-keyword">if</span> (anterior == <span class="hljs-literal">nullptr</span>) {
+        cabeza = actual-&gt;siguiente;
+    } <span class="hljs-keyword">else</span> {
+        anterior-&gt;siguiente = actual-&gt;siguiente;
+    }
+
+    <span class="hljs-keyword">delete</span> actual;
+}
+</div></code></pre>
+<h2 id="95-ejemplo-aplicativo-lista-de-estudiantes">9.5 Ejemplo Aplicativo: Lista de Estudiantes</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Estudiante</span> {</span>
+    <span class="hljs-built_in">string</span> nombre;
+    Estudiante* siguiente;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">imprimirLista</span><span class="hljs-params">(Estudiante* cabeza)</span> </span>{
+    <span class="hljs-keyword">while</span> (cabeza != <span class="hljs-literal">nullptr</span>) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; cabeza-&gt;nombre &lt;&lt; <span class="hljs-built_in">endl</span>;
+        cabeza = cabeza-&gt;siguiente;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    Estudiante* e1 = <span class="hljs-keyword">new</span> Estudiante{<span class="hljs-string">"Ana"</span>, <span class="hljs-literal">nullptr</span>};
+    Estudiante* e2 = <span class="hljs-keyword">new</span> Estudiante{<span class="hljs-string">"Luis"</span>, <span class="hljs-literal">nullptr</span>};
+    Estudiante* e3 = <span class="hljs-keyword">new</span> Estudiante{<span class="hljs-string">"Carlos"</span>, <span class="hljs-literal">nullptr</span>};
+
+    e1-&gt;siguiente = e2;
+    e2-&gt;siguiente = e3;
+
+    imprimirLista(e1);
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="96-tipos-de-listas-enlazadas">9.6 Tipos de Listas Enlazadas</h2>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Característica principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lista simplemente enlazada</td>
+<td>Cada nodo apunta solo al siguiente nodo</td>
+</tr>
+<tr>
+<td>Lista doblemente enlazada</td>
+<td>Cada nodo apunta al siguiente y al anterior</td>
+</tr>
+<tr>
+<td>Lista circular</td>
+<td>El último nodo apunta al primero (forma un ciclo)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="97-visualizaci%C3%B3n-y-diagramas">9.7 Visualización y Diagramas</h2>
+<ul>
+<li><strong>Lista simple</strong>: <code>1 -&gt; 2 -&gt; 3 -&gt; NULL</code></li>
+<li><strong>Lista doble</strong>: <code>&lt;-&gt; 1 &lt;-&gt; 2 &lt;-&gt; 3 &lt;-&gt;</code></li>
+<li><strong>Circular</strong>: <code>1 -&gt; 2 -&gt; 3 -&gt; 1</code></li>
+</ul>
+<hr>
+<h2 id="ing"><img src="ING9.png" alt="ING"></h2>
+<h1 id="cap%C3%ADtulo-10-pilas-stacks">Capítulo 10: Pilas (Stacks)</h1>
+<p>Las <strong>pilas (stacks)</strong> son estructuras de datos lineales que siguen el principio <strong>LIFO</strong>: <em>Last In, First Out</em> (el último en entrar es el primero en salir).</p>
+<p>Se utilizan en diversos contextos como:</p>
+<ul>
+<li>Llamadas a funciones (stack de ejecución)</li>
+<li>Deshacer operaciones</li>
+<li>Evaluación de expresiones</li>
+<li>Recorrido de estructuras recursivas</li>
+</ul>
+<h2 id="101-concepto-de-pila">10.1 Concepto de Pila</h2>
+<p>Una pila está compuesta por nodos donde sólo se pueden insertar (push) y eliminar (pop) elementos desde el <strong>tope</strong>.</p>
+<p><img src="pila-ilustracion.png" alt="Ilustración de pila: push y pop"></p>
+<h2 id="102-implementaci%C3%B3n-de-una-pila-con-estructuras">10.2 Implementación de una pila con estructuras</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Nodo</span> {</span>
+    <span class="hljs-keyword">int</span> dato;
+    Nodo* siguiente;
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pila</span> {</span>
+<span class="hljs-keyword">private</span>:
+    Nodo* tope;
+
+<span class="hljs-keyword">public</span>:
+    Pila() : tope(<span class="hljs-literal">nullptr</span>) {}
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-keyword">int</span> valor)</span> </span>{
+        Nodo* nuevo = <span class="hljs-keyword">new</span> Nodo{valor, tope};
+        tope = nuevo;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (tope == <span class="hljs-literal">nullptr</span>) {
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Pila vacía."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-keyword">return</span>;
+        }
+        Nodo* temp = tope;
+        tope = tope-&gt;siguiente;
+        <span class="hljs-keyword">delete</span> temp;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cima</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (tope == <span class="hljs-literal">nullptr</span>) {
+            <span class="hljs-keyword">throw</span> runtime_error(<span class="hljs-string">"Pila vacía"</span>);
+        }
+        <span class="hljs-keyword">return</span> tope-&gt;dato;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">estaVacia</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> tope == <span class="hljs-literal">nullptr</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">imprimir</span><span class="hljs-params">()</span> </span>{
+        Nodo* actual = tope;
+        <span class="hljs-keyword">while</span> (actual != <span class="hljs-literal">nullptr</span>) {
+            <span class="hljs-built_in">cout</span> &lt;&lt; actual-&gt;dato &lt;&lt; <span class="hljs-string">" -&gt; "</span>;
+            actual = actual-&gt;siguiente;
+        }
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"NULL"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    ~Pila() {
+        <span class="hljs-keyword">while</span> (!estaVacia()) pop();
+    }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    Pila p;
+    p.push(<span class="hljs-number">10</span>);
+    p.push(<span class="hljs-number">20</span>);
+    p.push(<span class="hljs-number">30</span>);
+    p.imprimir();
+    p.pop();
+    p.imprimir();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="103-operaciones-b%C3%A1sicas">10.3 Operaciones básicas</h2>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>push(x)</code></td>
+<td>Inserta <code>x</code> en la cima de la pila</td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td>Elimina el elemento en la cima</td>
+</tr>
+<tr>
+<td><code>cima()</code></td>
+<td>Devuelve el valor de la cima</td>
+</tr>
+<tr>
+<td><code>estaVacia()</code></td>
+<td>Verifica si la pila está vacía</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="104-aplicaci%C3%B3n-verificaci%C3%B3n-de-par%C3%A9ntesis-balanceados">10.4 Aplicación: Verificación de paréntesis balanceados</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">parentesisBalanceados</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; expr)</span> </span>{
+    <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">char</span>&gt; pila;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c : expr) {
+        <span class="hljs-keyword">if</span> (c == <span class="hljs-string">'('</span>) pila.push(c);
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">')'</span>) {
+            <span class="hljs-keyword">if</span> (pila.empty()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            pila.pop();
+        }
+    }
+    <span class="hljs-keyword">return</span> pila.empty();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">string</span> expresion = <span class="hljs-string">"(a+b)*(c+(d-e))"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; (parentesisBalanceados(expresion) ? <span class="hljs-string">"Balanceados"</span> : <span class="hljs-string">"No balanceados"</span>) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="105-uso-de-la-stl-stdstack">10.5 Uso de la STL: <code>std::stack</code></h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stack&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; pila;
+    pila.push(<span class="hljs-number">1</span>);
+    pila.push(<span class="hljs-number">2</span>);
+    pila.push(<span class="hljs-number">3</span>);
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Tope: "</span> &lt;&lt; pila.top() &lt;&lt; <span class="hljs-built_in">endl</span>;
+    pila.pop();
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nuevo tope: "</span> &lt;&lt; pila.top() &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<hr>
+<h2 id="ing"><img src="ING11.png" alt="ING"></h2>
+<h1 id="cap%C3%ADtulo-11-colas-queues-en-c">Capítulo 11: Colas (Queues) en C++</h1>
+<p>Las <strong>colas</strong> son estructuras de datos lineales que siguen el principio <strong>FIFO</strong>: <em>First In, First Out</em> (el primero en entrar es el primero en salir).</p>
+<p>Se utilizan en:</p>
+<ul>
+<li>Manejo de procesos en sistemas operativos.</li>
+<li>Simulaciones de filas de espera.</li>
+<li>Transmisiones de datos.</li>
+<li>Impresoras y redes.</li>
+</ul>
+<h2 id="111-concepto-de-cola">11.1 Concepto de Cola</h2>
+<p>Una cola permite inserciones por un extremo (final) y extracciones por el otro (frente).</p>
+<p><img src="cola-ilustracion.png" alt="Ilustración de cola: en queue y de queue"></p>
+<h2 id="112-implementaci%C3%B3n-de-una-cola-con-estructuras">11.2 Implementación de una cola con estructuras</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Nodo</span> {</span>
+    <span class="hljs-keyword">int</span> dato;
+    Nodo* siguiente;
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cola</span> {</span>
+<span class="hljs-keyword">private</span>:
+    Nodo* frente;
+    Nodo* <span class="hljs-keyword">final</span>;
+
+<span class="hljs-keyword">public</span>:
+    Cola() : frente(<span class="hljs-literal">nullptr</span>), <span class="hljs-keyword">final</span>(<span class="hljs-literal">nullptr</span>) {}
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">enqueue</span><span class="hljs-params">(<span class="hljs-keyword">int</span> valor)</span> </span>{
+        Nodo* nuevo = <span class="hljs-keyword">new</span> Nodo{valor, <span class="hljs-literal">nullptr</span>};
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">final</span> == <span class="hljs-literal">nullptr</span>) {
+            frente = <span class="hljs-keyword">final</span> = nuevo;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">final</span>-&gt;siguiente = nuevo;
+            <span class="hljs-keyword">final</span> = nuevo;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dequeue</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (frente == <span class="hljs-literal">nullptr</span>) {
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Cola vacía."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-keyword">return</span>;
+        }
+        Nodo* temp = frente;
+        frente = frente-&gt;siguiente;
+        <span class="hljs-keyword">if</span> (frente == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">final</span> = <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">delete</span> temp;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">frenteValor</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (frente == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">throw</span> runtime_error(<span class="hljs-string">"Cola vacía"</span>);
+        <span class="hljs-keyword">return</span> frente-&gt;dato;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">estaVacia</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> frente == <span class="hljs-literal">nullptr</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">imprimir</span><span class="hljs-params">()</span> </span>{
+        Nodo* actual = frente;
+        <span class="hljs-keyword">while</span> (actual != <span class="hljs-literal">nullptr</span>) {
+            <span class="hljs-built_in">cout</span> &lt;&lt; actual-&gt;dato &lt;&lt; <span class="hljs-string">" &lt;- "</span>;
+            actual = actual-&gt;siguiente;
+        }
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"NULL"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+
+    ~Cola() {
+        <span class="hljs-keyword">while</span> (!estaVacia()) dequeue();
+    }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    Cola c;
+    c.enqueue(<span class="hljs-number">10</span>);
+    c.enqueue(<span class="hljs-number">20</span>);
+    c.enqueue(<span class="hljs-number">30</span>);
+    c.imprimir();
+    c.dequeue();
+    c.imprimir();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="113-operaciones-fundamentales">11.3 Operaciones fundamentales</h2>
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enqueue(x)</code></td>
+<td>Inserta <code>x</code> al final de la cola</td>
+</tr>
+<tr>
+<td><code>dequeue()</code></td>
+<td>Elimina el elemento al frente</td>
+</tr>
+<tr>
+<td><code>frenteValor()</code></td>
+<td>Devuelve el valor del frente sin eliminarlo</td>
+</tr>
+<tr>
+<td><code>estaVacia()</code></td>
+<td>Verifica si la cola está vacía</td>
+</tr>
+</tbody>
+</table>
+<h2 id="114-uso-de-la-stl-stdqueue">11.4 Uso de la STL: <code>std::queue</code></h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">queue</span>&lt;<span class="hljs-keyword">int</span>&gt; cola;
+    cola.push(<span class="hljs-number">1</span>);
+    cola.push(<span class="hljs-number">2</span>);
+    cola.push(<span class="hljs-number">3</span>);
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Frente: "</span> &lt;&lt; cola.front() &lt;&lt; <span class="hljs-built_in">endl</span>;
+    cola.pop();
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nuevo frente: "</span> &lt;&lt; cola.front() &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<h2 id="115-aplicaci%C3%B3n-sistema-de-atenci%C3%B3n-de-clientes">11.5 Aplicación: Sistema de atención de clientes</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;queue&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">queue</span>&lt;<span class="hljs-built_in">string</span>&gt; clientes;
+    clientes.push(<span class="hljs-string">"Ana"</span>);
+    clientes.push(<span class="hljs-string">"Luis"</span>);
+    clientes.push(<span class="hljs-string">"María"</span>);
+
+    <span class="hljs-keyword">while</span> (!clientes.empty()) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Atendiendo a: "</span> &lt;&lt; clientes.front() &lt;&lt; <span class="hljs-built_in">endl</span>;
+        clientes.pop();
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<hr>
+<h2 id="ing"><img src="ING12.png" alt="ING"></h2>
+<h1 id="cap%C3%ADtulo-12-recursi%C3%B3n-en-c">Capítulo 12: Recursión en C++</h1>
+<p>La <strong>recursión</strong> es una técnica de programación donde una función se llama a sí misma directa o indirectamente para resolver un problema.</p>
+<p>Es especialmente útil cuando un problema puede dividirse en subproblemas más pequeños del mismo tipo.</p>
+<p><strong>Ejemplos comunes:</strong> factoriales, secuencia Fibonacci, recorrido de estructuras de datos, algoritmos de división y conquista.</p>
+<h2 id="121-componentes-de-una-funci%C3%B3n-recursiva">12.1 Componentes de una función recursiva</h2>
+<p>Una función recursiva debe tener:</p>
+<ol>
+<li><strong>Caso base:</strong> Condición para detener la recursión.</li>
+<li><strong>Paso recursivo:</strong> Llamada a sí misma con un valor más simple o reducido.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">factorial</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+    <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;           <span class="hljs-comment">// Caso base</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> n * factorial(n - <span class="hljs-number">1</span>); <span class="hljs-comment">// Paso recursivo</span>
+}
+</div></code></pre>
+<h2 id="122-factorial-de-un-n%C3%BAmero-ejemplo-cl%C3%A1sico">12.2 Factorial de un número (ejemplo clásico)</h2>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">factorial</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+    <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> n * factorial(n - <span class="hljs-number">1</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> numero = <span class="hljs-number">5</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Factorial de "</span> &lt;&lt; numero &lt;&lt; <span class="hljs-string">" es: "</span> &lt;&lt; factorial(numero) &lt;&lt; <span class="hljs-built_in">endl</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p><strong>Flujo de llamadas:</strong></p>
+<pre class="hljs"><code><div>factorial(5)
+ -&gt; 5 * factorial(4)
+   -&gt; 4 * factorial(3)
+     -&gt; 3 * factorial(2)
+       -&gt; 2 * factorial(1)
+         -&gt; 1 (caso base)
+</div></code></pre>
+<h2 id="123-secuencia-fibonacci">12.3 Secuencia Fibonacci</h2>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fibonacci</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+    <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> fibonacci(n - <span class="hljs-number">1</span>) + fibonacci(n - <span class="hljs-number">2</span>);
+}
+</div></code></pre>
+<p><strong>Nota:</strong> Este código es ineficiente para <code>n</code> grandes. Se recomienda usar memoización o versión iterativa para optimizar.</p>
+<h2 id="124-recursi%C3%B3n-de-cola-tail-recursion">12.4 Recursión de cola (Tail Recursion)</h2>
+<p>Una función recursiva es de cola cuando la llamada recursiva es la última instrucción en ejecutarse:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">suma</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> acumulado = <span class="hljs-number">0</span>)</span> </span>{
+    <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> acumulado;
+    <span class="hljs-keyword">return</span> suma(n - <span class="hljs-number">1</span>, acumulado + n);
+}
+</div></code></pre>
+<p>Esto facilita la optimización por parte del compilador.</p>
+<hr>
+<h3 id="125-aplicaci%C3%B3n-potenciaci%C3%B3n-recursiva">12.5 Aplicación: Potenciación recursiva</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">potencia</span><span class="hljs-params">(<span class="hljs-keyword">int</span> base, <span class="hljs-keyword">int</span> exponente)</span> </span>{
+    <span class="hljs-keyword">if</span> (exponente == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> base * potencia(base, exponente - <span class="hljs-number">1</span>);
+}
+</div></code></pre>
+<p><strong>Mejora con división y conquista:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">potenciaRapida</span><span class="hljs-params">(<span class="hljs-keyword">int</span> base, <span class="hljs-keyword">int</span> exponente)</span> </span>{
+    <span class="hljs-keyword">if</span> (exponente == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span> (exponente % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> potenciaRapida(base * base, exponente / <span class="hljs-number">2</span>);
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> base * potenciaRapida(base, exponente - <span class="hljs-number">1</span>);
+}
+</div></code></pre>
+<h2 id="126-comparaci%C3%B3n-recursi%C3%B3n-vs-iteraci%C3%B3n">12.6 Comparación: Recursión vs. Iteración</h2>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>Recursión</th>
+<th>Iteración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simplicidad del código</td>
+<td>Más clara para problemas recursivos</td>
+<td>Menor uso de memoria</td>
+</tr>
+<tr>
+<td>Uso de memoria</td>
+<td>Mayor (stack de llamadas)</td>
+<td>Menor</td>
+</tr>
+<tr>
+<td>Velocidad</td>
+<td>Puede ser menor (sin optimización)</td>
+<td>Mayor velocidad en general</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="ing"><img src="ING10.png" alt="ING"></h2>
+
+</body>
+</html>
