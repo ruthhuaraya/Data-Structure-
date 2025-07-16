@@ -13,7 +13,8 @@ format: html
 **Estudiante de Ingeniería Estadística e Informática**  
 
 **Asesor:** Fredd Torres Cruz
-Curso: Estructura de Datos  
+
+**Curso:** Estructura de Datos  
 
 **Puno, Perú**  
 2025
@@ -155,6 +156,30 @@ Cada capítulo está diseñado con teoría breve pero esencial, ejemplos de apli
   - [Recursión de cola (Tail Recursion)](#124-recursión-de-cola-tail-recursion)
     - [Aplicación: Potenciación recursiva](#125-aplicación-potenciación-recursiva)
   - [Comparación: Recursión vs. Iteración](#126-comparación-recursión-vs-iteración)
+- [Programación Competitiva](#capítulo-13-programación-competitiva)
+  - [Técnicas de Programación](#131-técnicas-de-programación)
+    - [Entrada y Salida Rápida](#1311-entrada-y-salida-rápida)
+    - [Operaciones con Números](#1312-operaciones-con-números)
+    - [Acortar Código](#1313-acortar-código)
+  - [Algoritmos Recursivos](#132-algoritmos-recursivos)
+    - [Generación de subconjuntos](#1321-generación-de-subconjuntos)
+    - [Permutaciones](#1322-permutaciones)
+    - [Backtracking (N-Reinas, Sudoku)](#1323-backtracking-n-reinas-sudoku)
+  - [Manipulación de Bits](#133-manipulación-de-bits)
+    - [Operaciones útiles](#1331-operaciones-útiles)
+    - [Representación de conjuntos](#1332-representación-de-conjuntos)
+  - [Eficiencia y Complejidad Temporal](#134-eficiencia-y-complejidad-temporal)
+  - [Optimización de Código](#135-optimización-de-código)
+
+- [Árboles en C++](#capítulo-14-árboles-en-c)
+  - [Características de los Árboles](#características-de-los-árboles)
+  - [Árboles Binarios](#141-árboles-binarios)
+  - [Árboles AVL](#142-árboles-avl-auto-balanceado)
+  - [Árboles B y B+](#143-árboles-b-y-b)
+  - [Árbol Heap (Montículo)](#144-árbol-heap-montículo)
+  - [Árbol Rojo-Negro](#145-árbol-rojo-negro)
+  - [Comparación de Tipos de Árboles](#comparación-de-tipos-de-árboles)
+
 ---
 
 # Capitulo 1. Datos
@@ -1324,7 +1349,7 @@ Se utilizan en diversos contextos como:
 
 Una pila está compuesta por nodos donde sólo se pueden insertar (push) y eliminar (pop) elementos desde el **tope**.
 
-![Ilustración de pila: push y pop](pila-ilustracion.png)
+![Ilustración de pila: push y pop](PILA.png)
 
 ## 10.2 Implementación de una pila con estructuras
 
@@ -1469,7 +1494,7 @@ Se utilizan en:
 
 Una cola permite inserciones por un extremo (final) y extracciones por el otro (frente).
 
-![Ilustración de cola: en queue y de queue](cola-ilustracion.png)
+![ING](COLA.png)
 
 ## 11.2 Implementación de una cola con estructuras
 
@@ -1706,4 +1731,584 @@ int potenciaRapida(int base, int exponente) {
 | Velocidad              | Puede ser menor (sin optimización)  | Mayor velocidad en general |
 ---
 ![ING](ING10.png)
+---
+# Capítulo 13: Programación Competitiva
+
+La **programación competitiva** es una disciplina que combina conocimientos de estructuras de datos, algoritmos, análisis matemático y habilidades de codificación rápida y precisa. Es utilizada en concursos como ICPC, Codeforces, AtCoder, y también en entrevistas técnicas.
+
+Este capítulo explora técnicas fundamentales necesarias para resolver problemas eficientemente en C++, destacando:
+
+* Características del lenguaje.
+* Algoritmos recursivos.
+* Manipulación de bits.
+* Análisis de eficiencia.
+* Optimización de código.
+
+---
+
+## 13.1 Técnicas de Programación
+
+### 13.1.1 Entrada y Salida Rápida
+
+Para acelerar la lectura de datos en C++:
+
+```cpp
+ios::sync_with_stdio(false);
+cin.tie(NULL);
+```
+
+Comparación de entrada:
+
+```cpp
+int n;
+cin >> n;          // estándar
+scanf("%d", &n);    // más rápido en casos masivos
+```
+
+### 13.1.2 Operaciones con Números
+
+```cpp
+int a = 7 / 2; // 3, división entera
+float f = 7 / 2.0; // 3.5
+int m = -5 % 3; // -2 (C++ conserva el signo)
+```
+
+### 13.1.3 Acortar Código
+
+```cpp
+#define rep(i,a,b) for(int i=a; i<=b; i++)
+#define all(x) (x).begin(),(x).end()
+```
+
+Uso de `auto`, `vector`, y `pair` para mayor claridad:
+
+```cpp
+vector<int> v = {3,1,4};
+sort(all(v));
+for(auto x : v) cout << x << " ";
+```
+
+---
+
+## 13.2 Algoritmos Recursivos
+
+### 13.2.1 Generación de subconjuntos
+
+```cpp
+void generarSubconjuntos(string s, string actual = "", int i = 0) {
+    if (i == s.size()) {
+        cout << actual << endl;
+        return;
+    }
+    generarSubconjuntos(s, actual + s[i], i + 1);
+    generarSubconjuntos(s, actual, i + 1);
+}
+```
+
+### 13.2.2 Permutaciones
+
+```cpp
+#include <algorithm>
+
+void permutar(string s) {
+    sort(s.begin(), s.end());
+    do {
+        cout << s << endl;
+    } while(next_permutation(s.begin(), s.end()));
+}
+```
+
+### 13.2.3 Backtracking (N-Reinas, Sudoku)
+
+```cpp
+bool esValido(int fila, int col, vector<int>& reinas) {
+    for(int i = 0; i < fila; ++i) {
+        if(reinas[i] == col || abs(reinas[i] - col) == abs(i - fila))
+            return false;
+    }
+    return true;
+}
+
+void resolver(int fila, int n, vector<int>& reinas) {
+    if (fila == n) {
+        for(int i : reinas) cout << i << " ";
+        cout << endl;
+        return;
+    }
+    for(int col = 0; col < n; col++) {
+        if (esValido(fila, col, reinas)) {
+            reinas[fila] = col;
+            resolver(fila+1, n, reinas);
+        }
+    }
+}
+```
+
+---
+
+## 13.3 Manipulación de Bits
+
+### 13.3.1 Operaciones útiles
+
+| Operación       | Código   | Descripción               |                        |
+| --------------- | -------- | ------------------------- | ---------------------- |
+| AND             | `a & b`  | Bits activos en ambos     |
+| OR              | `a \| b`     | Bits activos en alguno |
+| XOR             | `a ^ b`  | Bits distintos            |
+| NOT             | `~a`     | Inverso de todos los bits |
+| Shift izquierda | `a << 1` | Multiplica por 2          |
+| Shift derecha   | `a >> 1` | Divide por 2              |
+
+### 13.3.2 Representación de conjuntos
+
+```cpp
+int conjunto = 0;
+conjunto |= (1 << 2); // insertar elemento 2
+if (conjunto & (1 << 2)) cout << "presente";
+conjunto ^= (1 << 2); // eliminar elemento 2
+```
+
+---
+
+## 13.4 Eficiencia y Complejidad Temporal
+
+### 13.4.1 Reglas
+
+| Tipo de Código       | Complejidad |
+| -------------------- | ----------- |
+| Bucle simple         | O(n)        |
+| Bucle anidado        | O(n^2)      |
+| Dividir y conquistar | O(log n)    |
+| Doble recursión      | O(2^n)      |
+
+### 13.4.2 Estimaciones
+
+| Límite de tiempo (s) | Operaciones posibles aprox. |
+| -------------------- | --------------------------- |
+| 1 segundo            | \~10^8                      |
+
+### 13.4.3 Ejemplo: Suma de subarreglo máximo
+
+```cpp
+int maxSubarray(vector<int>& arr) {
+    int maxGlobal = arr[0], maxActual = arr[0];
+    for (int i = 1; i < arr.size(); i++) {
+        maxActual = max(arr[i], maxActual + arr[i]);
+        maxGlobal = max(maxGlobal, maxActual);
+    }
+    return maxGlobal;
+}
+```
+
+---
+
+## 13.5 Optimización de Código
+
+### 13.5.1 Uso de compilador
+
+Compilar con optimizaciones:
+
+```bash
+g++ -O2 codigo.cpp -o programa
+```
+
+### 13.5.2 Características del procesador
+
+* Uso eficiente de la memoria caché.
+* Evitar saltos innecesarios.
+* Minimizar recursiones profundas sin optimización tail-call.
+
+---
+![ING](ING13.png)
+---
+# Capítulo 14: Árboles en C++
+
+Los **árboles** son estructuras de datos jerárquicas fundamentales en la informática. Sirven para representar información estructurada como directorios de archivos, expresiones aritméticas, relaciones genealógicas, estructuras de bases de datos y más. Comprender el funcionamiento, la implementación y la manipulación de árboles es esencial para resolver problemas de forma eficiente.
+## Caracteristicas de los arboles
+| Término      | Definición                                             |
+| ------------ | ------------------------------------------------------ |
+| Nodo raíz    | Primer nodo del árbol.                                 |
+| Nodo padre   | Nodo que tiene al menos un hijo.                       |
+| Nodo hijo    | Nodo descendiente de un nodo padre.                    |
+| Nodo hermano | Nodos que comparten el mismo nodo padre.               |
+| Nodo hoja    | Nodo que no tiene hijos.                               |
+| Nodo rama    | Nodo que no es raíz y tiene al menos un hijo.          |
+| Nivel        | Número de generaciones desde la raíz hasta un nodo.    |
+| Altura       | Longitud máxima desde la raíz hasta una hoja.          |
+| Peso         | Número total de nodos en el árbol.                     |
+| Orden        | Número máximo de hijos que puede tener un nodo.        |
+| Grado        | Mayor número de hijos que tiene un nodo en particular. |
+| Subárbol     | Árbol formado por un nodo y todos sus descendientes.   |
+---
+![ING](ARB.png)
+---
+## Tipos de Árboles
+### 14.1 Árboles Binarios
+
+### ¿Qué es?
+
+Un **árbol binario** es una estructura en la que cada nodo puede tener hasta dos hijos: izquierdo y derecho.
+
+### Propiedades
+
+* Cada nodo puede tener 0, 1 o 2 hijos.
+* La raíz es el nodo superior.
+* Las hojas son los nodos sin hijos.
+* La profundidad es la distancia desde la raíz.
+* La altura es la distancia desde el nodo más profundo hasta la raíz.
+
+![ING](ARBB.png)
+
+### Operaciones
+
+* Inserción
+* Recorrido (inorden, preorden, postorden)
+* Eliminación (requiere manejo de casos con 0, 1 o 2 hijos)
+
+### Estructura de un Nodo
+
+```cpp
+struct Nodo {
+    int valor;
+    Nodo* izquierdo;
+    Nodo* derecho;
+
+    Nodo(int v) : valor(v), izquierdo(nullptr), derecho(nullptr) {}
+};
+```
+
+### Inserción Básica
+
+```cpp
+Nodo* insertar(Nodo* raiz, int valor) {
+    if (raiz == nullptr) return new Nodo(valor);
+
+    if (valor < raiz->valor)
+        raiz->izquierdo = insertar(raiz->izquierdo, valor);
+    else
+        raiz->derecho = insertar(raiz->derecho, valor);
+
+    return raiz;
+}
+```
+
+### Recorridos del Árbol
+
+* **Inorden**: izquierda → raíz → derecha
+* **Preorden**: raíz → izquierda → derecha
+* **Postorden**: izquierda → derecha → raíz
+
+```cpp
+void inorden(Nodo* raiz) {
+    if (raiz) {
+        inorden(raiz->izquierdo);
+        cout << raiz->valor << " ";
+        inorden(raiz->derecho);
+    }
+}
+```
+
+---
+
+## 14.2 Árbol AVL (Auto-balanceado)
+
+### ¿Qué es?
+
+Un **Árbol AVL** es un árbol binario de búsqueda que mantiene su equilibrio automáticamente. Fue el primer tipo de árbol balanceado propuesto.
+
+### Propiedades
+
+* Altura balanceada: la diferencia de alturas entre subárboles de un nodo no excede 1.
+* Operaciones básicas (inserción, eliminación) garantizan complejidad O(log n).
+
+![ING](ARBAVL.png)
+
+### Rotaciones
+
+Para restaurar el equilibrio, se utilizan rotaciones:
+
+* **LL**: Rotación simple a la derecha
+* **RR**: Rotación simple a la izquierda
+* **LR**: Rotación doble izquierda-derecha
+* **RL**: Rotación doble derecha-izquierda
+
+### Operaciones
+
+* Inserción (con rebalanceo)
+* Eliminación (con rebalanceo)
+* Búsqueda (igual que en BST)
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Definición del nodo AVL
+struct Nodo {
+    int valor;
+    Nodo* izquierdo;
+    Nodo* derecho;
+    int altura;
+
+    Nodo(int v) : valor(v), izquierdo(nullptr), derecho(nullptr), altura(1) {}
+};
+
+// Obtener altura del nodo
+int altura(Nodo* n) {
+    return n ? n->altura : 0;
+}
+
+// Obtener el factor de equilibrio
+int balance(Nodo* n) {
+    return n ? altura(n->izquierdo) - altura(n->derecho) : 0;
+}
+
+// Actualizar altura del nodo
+void actualizarAltura(Nodo* n) {
+    n->altura = 1 + max(altura(n->izquierdo), altura(n->derecho));
+}
+
+// Rotación simple a la derecha (LL)
+Nodo* rotarDerecha(Nodo* y) {
+    Nodo* x = y->izquierdo;
+    Nodo* T2 = x->derecho;
+
+    x->derecho = y;
+    y->izquierdo = T2;
+
+    actualizarAltura(y);
+    actualizarAltura(x);
+
+    return x;
+}
+
+// Rotación simple a la izquierda (RR)
+Nodo* rotarIzquierda(Nodo* x) {
+    Nodo* y = x->derecho;
+    Nodo* T2 = y->izquierdo;
+
+    y->izquierdo = x;
+    x->derecho = T2;
+
+    actualizarAltura(x);
+    actualizarAltura(y);
+
+    return y;
+}
+
+// Inserción con balanceo
+Nodo* insertarAVL(Nodo* nodo, int valor) {
+    // 1. Inserción normal en árbol BST
+    if (!nodo) return new Nodo(valor);
+
+    if (valor < nodo->valor)
+        nodo->izquierdo = insertarAVL(nodo->izquierdo, valor);
+    else if (valor > nodo->valor)
+        nodo->derecho = insertarAVL(nodo->derecho, valor);
+    else
+        return nodo; // No se permiten duplicados
+
+    // 2. Actualizar altura
+    actualizarAltura(nodo);
+
+    // 3. Calcular factor de equilibrio
+    int fb = balance(nodo);
+
+    // 4. Rotaciones según el caso
+
+    // Caso LL
+    if (fb > 1 && valor < nodo->izquierdo->valor)
+        return rotarDerecha(nodo);
+
+    // Caso RR
+    if (fb < -1 && valor > nodo->derecho->valor)
+        return rotarIzquierda(nodo);
+
+    // Caso LR
+    if (fb > 1 && valor > nodo->izquierdo->valor) {
+        nodo->izquierdo = rotarIzquierda(nodo->izquierdo);
+        return rotarDerecha(nodo);
+    }
+
+    // Caso RL
+    if (fb < -1 && valor < nodo->derecho->valor) {
+        nodo->derecho = rotarDerecha(nodo->derecho);
+        return rotarIzquierda(nodo);
+    }
+
+    // Retornar nodo sin cambios
+    return nodo;
+}
+
+// Recorrido Inorden (para verificar estructura)
+void inorden(Nodo* raiz) {
+    if (raiz) {
+        inorden(raiz->izquierdo);
+        cout << raiz->valor << " ";
+        inorden(raiz->derecho);
+    }
+}
+
+int main() {
+    Nodo* raiz = nullptr;
+    raiz = insertarAVL(raiz, 10);
+    raiz = insertarAVL(raiz, 20);
+    raiz = insertarAVL(raiz, 30);
+    raiz = insertarAVL(raiz, 40);
+    raiz = insertarAVL(raiz, 50);
+    raiz = insertarAVL(raiz, 25);
+
+    cout << "Recorrido Inorden del AVL resultante:\n";
+    inorden(raiz); // Verificar estructura balanceada
+
+    return 0;
+}
+```
+---
+
+## 14.3 Árboles B y B+
+
+### ¿Qué son?
+
+Los **Árboles B** y **B+** son estructuras de búsqueda balanceadas diseñadas para trabajar eficientemente en almacenamiento secundario (disco duro).
+
+![ING](ARBB+.png)
+---
+### Árbol B
+
+* Nodos con múltiples claves y múltiples hijos.
+* Diseñado para minimizar accesos a disco.
+* Las claves están en nodos internos y hojas.
+
+### Árbol B+
+
+* Variante del Árbol B.
+* Toda la información útil se almacena en las hojas.
+* Las hojas están enlazadas (listas enlazadas horizontales) para facilitar recorridos.
+
+### Propiedades
+
+* Altura reducida
+* Balanceado automáticamente
+* Eficientes en bases de datos y sistemas de archivos
+
+### Operaciones
+
+* Inserción
+* Búsqueda
+* Eliminación
+
+> Nota: debido a su complejidad, su implementación no es común en problemas competitivos, pero sí en bases de datos.
+
+---
+
+## 14.4 Árbol Heap (Montículo)
+
+### ¿Qué es?
+
+Un **Heap** o **montículo** es un árbol binario completo donde se mantiene la propiedad de **orden de montículo**:
+
+* **Min-Heap**: cada nodo es menor o igual que sus hijos.
+* **Max-Heap**: cada nodo es mayor o igual que sus hijos.
+
+### Propiedades
+
+* Siempre es un árbol binario **completo** (todos los niveles llenos salvo posiblemente el último).
+* Puede representarse eficientemente en arreglos.
+
+![ING](ARBHEAP.png)
+---
+### Operaciones
+
+* Inserción: O(log n)
+* Extracción del mínimo o máximo: O(log n)
+* Heapify (construcción desde arreglo): O(n)
+
+#### Ejemplo con priority_queue
+```cpp
+
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+int main() {
+    // Max Heap (por defecto)
+    priority_queue<int> maxHeap;
+
+    maxHeap.push(10);
+    maxHeap.push(30);
+    maxHeap.push(20);
+    maxHeap.push(40);
+
+    cout << "MAX HEAP:" << endl;
+    while (!maxHeap.empty()) {
+        cout << maxHeap.top() << " ";
+        maxHeap.pop();
+    }
+    cout << "\n";
+
+    // Min Heap (usando greater<int>)
+    priority_queue<int, vector<int>, greater<int>> minHeap;
+
+    minHeap.push(10);
+    minHeap.push(30);
+    minHeap.push(20);
+    minHeap.push(40);
+
+    cout << "MIN HEAP:" << endl;
+    while (!minHeap.empty()) {
+        cout << minHeap.top() << " ";
+        minHeap.pop();
+    }
+
+    return 0;
+}
+```
+
+---
+
+## 14.5 Árbol Rojo-Negro
+
+### ¿Qué es?
+
+Un **Árbol Rojo-Negro** es un árbol binario de búsqueda balanceado, con reglas adicionales que garantizan altura logarítmica.
+
+### Propiedades
+
+1. Cada nodo es rojo o negro.
+2. La raíz siempre es negra.
+3. Los hijos de un nodo rojo son negros.
+4. Todas las rutas desde un nodo a sus hojas tienen el mismo número de nodos negros.
+
+![ING](ARBRN.png)
+---
+### Operaciones
+
+* Inserción (con rotaciones y recoloreos)
+* Eliminación (más compleja que en AVL)
+* Búsqueda: O(log n)
+
+### En C++
+
+Las estructuras `std::set` y `std::map` del STL usan internamente árboles rojo-negro para garantizar eficiencia.
+
+```cpp
+#include <set>
+set<int> arbol;
+arbol.insert(10);
+```
+
+---
+
+## Comparación de Tipos de Árboles
+
+| Tipo       | Equilibrado | Altura   | Uso principal             | Comentario                         |
+| ---------- | ----------- | -------- | ------------------------- | ---------------------------------- |
+| Binario    | No           | O(n)     | Recorridos, teoría        | Simple pero puede desbalancearse   |
+| AVL        | Si           | O(log n) | Búsqueda dinámica         | Mantiene equilibrio con rotaciones |
+| B / B+     | Si           | O(log n) | Bases de datos            | Optimizado para disco              |
+| Heap       | Parcial     | O(log n) | Prioridad                 | No apto para búsquedas arbitrarias |
+| Rojo-Negro | Si          | O(log n) | STL, estructuras de clave | Balanceo más relajado que AVL      |
+---
+![ING](ING14.png)
 ---
